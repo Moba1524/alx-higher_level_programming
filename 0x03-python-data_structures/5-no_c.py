@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 def no_c(my_string):
-    remove = ""
-    for i in my_string:
-        if i != 'c' and i != 'C':
-            remove += i
-    return (remove) 
+    new_sentence = my_string.translate({ord('c') : None})
+    new_sentence = my_string.translate({ord('C') : None})
+    return new_sentence
+
+print(no_c("The letter comes nothing"))
