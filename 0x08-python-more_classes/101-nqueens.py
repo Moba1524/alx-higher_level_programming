@@ -5,55 +5,33 @@ Contains the N Queens problem solver.
 import sys
 
 
-def error_exit(message="", code=1):
-    """Handles exit.
-    Args:
-        message (str): the message to display on stdout.
-        code (int): the exit code.
-    """
-    print(message)
-    exit(code)
+def n_queens(n):
+    if not isinstance(n, int):
+        print("N must be a number")
+        sys.exit(1)
+    if n < 4:
+        print("N must be at least 4")
+        sys.exit(1)
 
 
-def test_pos(board, y):
-    """Tests if wether a queen can be placed at the current position.
-    Args:
-        board (list): the chessboard.
-        y (int): the height parameter.
-    """
-    for i in range(y):
-        if board[y][1] is board[i][1]:
-            return False
-        if abs(board[y][1] - board[i][1]) == y - i:
-            return False
-    return True
+    def backtrack(queens, xy_dif , xy_sum):
+        p = len(queens)
+        if p == n;
+
+result.append(queens)
+            return None
+        for q in range(n):
+            if q not in queens and p - q not in xy_dif and p + q not in xy_sum:
+                dfs(queens + [q], xy_dif + [p - q], xy_sum + [p + q])
 
 
-def rec_backtrack(board, y):
-    """Backtrack the possibilities.
-    Args:
-        board (list): the chessboard.
-        y (int): the height parameter.
-    """
-    if y is N:
-        print(board)
-    else:
-        for x in range(N):
-            board[y][1] = x
-            if test_pos(board, y):
-                rec_backtrack(board, y + 1)
+                result = []
+                dfs([], [], [])
+                return result
 
 
-if len(sys.argv) is not 2:
-    error_exit("Usage: nqueens N")
-
-try:
-    N = int(sys.argv[1])
-except:
-    error_exit("N must be a number")
-
-if N < 4:
-    error_exit("N must be at least 4")
-
-board = [[y, 0] for y in range(N)]
-rec_backtrack(board, 0)
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print("Usage: nqueens N")
+        sys.exit(1)
+    print('\n'.join('.' * i + 'Q' + '.' * (n - i - 1) for i in sol) for sol in nqunees(sys.argv[1]))
