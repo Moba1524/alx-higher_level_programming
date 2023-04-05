@@ -1,37 +1,56 @@
 #!/usr/bin/python3
-"""N Queens Module.
-Contains the N Queens problem solver.
+
+"""
+module for calculation of n-queens problem
 """
 import sys
 
+class Solution_Board:
+    """class for use with n queens problem
+    """
+    solutions = []
 
-def n_queens(n):
-    if not isinstance(n, int):
-        print("N must be a number")
-        sys.exit(1)
-    if n < 4:
-        print("N must be at least 4")
-        sys.exit(1)
+    def __init__(self, num):
+        self.num = num
 
+    @property
+    def num(self):
+        return self.__num
 
-    def backtrack(queens, xy_dif , xy_sum):
-        p = len(queens)
-        if p == n;
+    @num.setter
+    def num(self, value):
+        if not isinstance(num, int):
+            raise TypeError("num should be an int")
+        self.__num = value
 
-result.append(queens)
-            return None
-        for q in range(n):
-            if q not in queens and p - q not in xy_dif and p + q not in xy_sum:
-                dfs(queens + [q], xy_dif + [p - q], xy_sum + [p + q])
+args = sys.argv
 
+if len(args) != 2:
+    exit(1)
+if not args[1].isdigit():
+    print("N must be a number")
+    exit(1)
 
-                result = []
-                dfs([], [], [])
-                return result
+num = int(args[1])
+if num < 4:
+    print("N must be at least 4")
+    exit(1)
 
+solutions = []
+board = [[0 for a in range(0, num)] for b in range(0, num)]
+running = True
+while running:
+    sol = get_n_queens(board)
+    solutions.append(sol)
+    running = False
 
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print("Usage: nqueens N")
-        sys.exit(1)
-    print('\n'.join('.' * i + 'Q' + '.' * (n - i - 1) for i in sol) for sol in nqunees(sys.argv[1]))
+def get_n_queens(chess_board, column, num):
+    if column >= num:
+        return True
+    for i in range(0, num):
+        if board_safe(chess_board, column):
+            chess_board[i][column] = 1
+            if get_n_queens(chess_board, column + 1):
+                return True
+            board[i][column] = 0
+    return False
