@@ -1,11 +1,13 @@
 #!/usr/bin/python3
-""" add_attribute module """
+"""this is my module for add_attribute"""
 
 
-def add_attribute(prmObject, prmName, prmValue):
-    """ add_attribute function """
-    if not hasattr(prmObject, "__dict__"):
-        raise TypeError("can't add new attribute")
-    if (not hasattr(prmObject, prmName)):
-        prmObject.__setattr__(prmName, prmValue)
+def add_attribute(obj, name, value):
+    """see if i can add attribute"""
+    if hasattr(obj, "__dict__"):
+        setattr(obj, name, value)
+    elif hasattr(obj, "__slots__") and name in obj.__slots__:
+        setattr(obj, name, value)
+    else:
+        raise TypeError('can\'t add new attribute')
 
