@@ -1,19 +1,20 @@
 #!/usr/bin/python3
-""" adds all arguments to a list, and then save them to a file """
+"""module for addng an item"""
+import json
+import os.path
 import sys
-import os
-save_to_json_file = __import__('7-save_to_json_file').save_to_json_file
-load_from_json_file = __import__('8-load_from_json_file').load_from_json_file
 
+save_to_json_file = __import__("5-save_to_json_file").save_to_json_file
 
-filename = 'add_item.json'
+load_from_json_file = __import__("6-load_from_json_file").load_from_json_file
 
-if os.path.isfile(filename):
-    argument_list = load_from_json_file(filename)
-else:
-    argument_list = []
+my = "add_item.json"
+json = []
 
-for argument in range(1, len(sys.argv)):
-    argument_list.append(sys.argv[argument])
+if os.path.exists(my):
+    json = load_from_json_file(my)
 
-save_to_json_file(argument_list, filename)
+for arg in range(1, len(sys.argv)):
+    json.append(sys.argv[arg])
+
+save_to_json_file(json, my)
