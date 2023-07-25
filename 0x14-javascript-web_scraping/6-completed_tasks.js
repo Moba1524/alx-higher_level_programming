@@ -1,16 +1,16 @@
 #!/usr/bin/node
 const request = require('request');
-request(process.argv[2], function (err, resp, body) {
-  if (!err) {
+request(process.argv[2], function (error, response, body) {
+  if (!error) {
     const data = JSON.parse(body);
-    const completedUsers = {};
+    let completed = {};
     data.forEach((element) => {
-      if (element.completed && completedUsers[element.userId] === undefined) {
-        completedUsers[element.userId] = 1;
+      if (element.completed && completed[element.userId] === undefined) {
+        completed[element.userId] = 1;
       } else if (element.completed) {
-        completedUsers[element.userId] += 1;
+        completed[element.userId] += 1;
       }
     });
-    console.log(completedUsers);
+    console.log(completed);
   }
 });
